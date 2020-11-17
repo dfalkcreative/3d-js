@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>3D Javascript Rendering Engine</title>
+        <link rel="stylesheet" href="resources/styles/style.css">
+        <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+        <script src="resources/scripts/math.js"></script>
+        <script src="resources/scripts/engine.js"></script>
+    </head>
+    <body>
+        <canvas id="render" width="640" height="480"></canvas>
+
+        <div class="toolkit row">
+            <div class="row">
+                <p class="column">Camera FOV</p>
+                <input class="column" type="range" min="0" max="120" step="0.1" value="90" id="fov">
+            </div>
+            <div class="row">
+                <p class="column">Camera Near</p>
+                <input class="column" type="range" min="8" max="15" step="0.1" value="10" id="near">
+            </div>
+            <div class="row">
+                <p class="column">Camera Far</p>
+                <input class="column" type="range" min="0" max="360" step="0.1" value="100" id="far">
+            </div>
+            <div class="row">
+                <p class="column">Camera Position X</p>
+                <input class="column" type="range" min="-20" max="20" step="0.1" value="0" id="camx">
+            </div>
+            <div class="row">
+                <p class="column">Camera Position Y</p>
+                <input class="column" type="range" min="-2" max="2" step="0.05" value="0" id="camy">
+            </div>
+            <div class="row">
+                <p class="column">Camera Position Z</p>
+                <input class="column" type="range" min="-5" max="0" step="0.01" value="-5" id="camz">
+            </div>
+            <div class="row">
+                <p class="column">X Rotation</p>
+                <input class="column" type="range" min="-360" max="360" step="0.05" value="90" id="xrot">
+            </div>
+            <div class="row">
+                <p class="column">Y Rotation</p>
+                <input class="column" type="range" min="-360" max="360" step="0.05" value="90" id="yrot">
+            </div>
+            <div class="row">
+                <p class="column">Z Rotation</p>
+                <input class="column" type="range" min="-360" max="360" step="0.05" value="90" id="zrot">
+            </div>
+        </div>
+
+        <script>
+            const camera = new Camera().init();
+            const renderer = new Renderer().init()
+                .setCamera(camera);
+
+            // Create the first plane.
+            const entityA = new Entity()
+                .addPoint(new Vector([0.0, 0.0, 0.0, 1.0]))
+                .addPoint(new Vector([0.0, 0.0, 0.2, 1.0]))
+                .addPoint(new Vector([0.2, 0.2, 0.2, 1.0]))
+                .addPoint(new Vector([0.2, 0.2, 0.0, 1.0]))
+                .loadTexture('resources/textures/brick.jpg');
+
+            // Create the second plane.
+            const entityB = new Entity()
+                .addPoint(new Vector([0.0, 0.0, 0.2, 1.0]))
+                .addPoint(new Vector([0.0, 0.0, 0.4, 1.0]))
+                .addPoint(new Vector([0.1, 0.2, 0.4, 1.0]))
+                .addPoint(new Vector([0.1, 0.2, 0.2, 1.0]))
+                .loadTexture('resources/textures/rock.jpg');
+
+            setTimeout(function () {
+                renderer
+                    .addEntity(entityA)
+                    .addEntity(entityB)
+                    .Render();
+            }, 1000);
+
+            $('#fov').on('input', function () {
+                renderer.getCamera().setFOV($(this).val());
+                renderer.Render();
+            });
+
+            $('#near').on('input', function () {
+                renderer.getCamera().setNear($(this).val());
+                renderer.Render();
+            });
+
+            $('#far').on('input', function () {
+                renderer.getCamera().setFar($(this).val());
+                renderer.Render();
+            });
+
+            $('#camx').on('input', function () {
+                renderer.getCamera().setXPosition($(this).val());
+                renderer.Render();
+            });
+
+            $('#camy').on('input', function () {
+                renderer.getCamera().setYPosition($(this).val());
+                renderer.Render();
+            });
+
+            $('#camz').on('input', function () {
+                renderer.getCamera().setZPosition($(this).val());
+                renderer.Render();
+            });
+
+            $('#xrot').on('input', function () {
+                renderer.getCamera().setXRotation($(this).val());
+                renderer.Render();
+            });
+
+            $('#yrot').on('input', function () {
+                renderer.getCamera().setYRotation($(this).val());
+                renderer.Render();
+            });
+
+            $('#zrot').on('input', function () {
+                renderer.getCamera().setZRotation($(this).val());
+                renderer.Render();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+.row{
+	display: block;
+	width: 100%;
+	min-height: 3em;
+}
+
+.column{
+	display: inline-block;
+}
+
+#render{
+	box-shadow: 0 3px 13px #bbbbbb;
+	border-radius: 0;
+}
