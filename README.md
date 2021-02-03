@@ -9,5 +9,5 @@ Experimental software-based / vintage 3D rendering engine built in Javascript. O
 ### Additional Resources
 To better understand the matrix operations occurring behind the scenes, please reference the following articles for a more in-depth understanding.
 
-http://www.opengl-tutorial.org/beginners-tutorials/tutorial-3-matrices/
-https://jsantell.com/model-view-projection/
+- http://www.opengl-tutorial.org/beginners-tutorials/tutorial-3-matrices/
+- https://jsantell.com/model-view-projection/
